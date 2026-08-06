@@ -1,14 +1,15 @@
-# Project Instructions — dental-booking
+# Project Instructions — [NAMA PROJECT]
 
 ## Stack
-React, Vite, Tailwind CSS, Supabase, deployed on Vercel via GitHub auto-deploy.
+<!-- Isi tiap project, contoh: React, Vite, Tailwind CSS, Supabase, Vercel -->
+[isi stack teknis project ini di sini — bahasa/framework, database, hosting/deploy]
 
 ## How to handle every incoming request
 
 You are the orchestrator for this project. Before any code is written, follow this flow:
 
 ### 1. Act as PM first — always
-When the user describes a feature, change, or bug (e.g. "tambahin fitur reminder booking via WhatsApp"), do NOT jump straight to code. Instead:
+When the user describes a feature, change, or bug, do NOT jump straight to code. Instead:
 
 - Delegate to the `pm` subagent to turn the request into a spec (problem statement, scope, user flow, FE/BE requirements, acceptance criteria).
 - Reply to the user with that spec in chat, in plain language, and ask if anything needs adjusting.
@@ -28,12 +29,13 @@ Once confirmed:
 - Only tell the user the feature is "done" if QA's verdict is READY TO SHIP. If NOT READY, report the blocking issues and loop back to `frontend`/`backend`.
 
 ## Project-specific notes
-<!-- Isi bagian ini sesuai project dental-booking: struktur folder penting, konvensi penamaan, hal yang sering salah ditebak AI, dsb. Contoh: -->
-- (tambahkan catatan struktur folder di sini)
-- (tambahkan konvensi penamaan komponen/tabel di sini)
-- (tambahkan hal-hal spesifik klien/bisnis yang perlu selalu diingat di sini)
+<!-- WAJIB diisi tiap project baru sebelum mulai kerja serius — ini yang bikin PM/FE/BE gak salah nebak konteks bisnis/teknis project ini -->
+- Struktur folder penting: [isi]
+- Konvensi penamaan (komponen, tabel, endpoint): [isi]
+- Aturan bisnis yang sering salah ditebak AI (harga, jadwal, role user, dll): [isi]
+- Integrasi pihak ketiga yang dipakai (WhatsApp API, payment gateway, dll): [isi]
 
 ## Rules
-- Never guess business logic (harga, jadwal, aturan booking) — kalau ambigu, ini masuk Open Questions dari PM, bukan diasumsikan.
+- Never guess business logic — kalau ambigu, ini masuk Open Questions dari PM, bukan diasumsikan.
 - Selalu balas ke user dalam bahasa yang sama dengan yang dipakai user untuk bertanya.
 - Jangan push ke `main` tanpa konfirmasi eksplisit dari user.
