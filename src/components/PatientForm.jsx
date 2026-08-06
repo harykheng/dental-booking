@@ -1,7 +1,7 @@
 export default function PatientForm({ patient, errors, onChange }) {
   return (
     <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-      <h2 className="text-base font-semibold text-slate-900">4. Data Diri</h2>
+      <h2 className="text-base font-semibold text-slate-900">Data Diri</h2>
 
       <div className="mt-3 grid gap-3">
         <div>
@@ -14,8 +14,8 @@ export default function PatientForm({ patient, errors, onChange }) {
             value={patient.name}
             onChange={(event) => onChange('name', event.target.value)}
             placeholder="Contoh: Budi Santoso"
-            className={`mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-teal-600 ${
-              errors.name ? 'border-red-300' : 'border-slate-200 focus:border-teal-600'
+            className={`mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-blue-600 ${
+              errors.name ? 'border-red-300' : 'border-slate-200 focus:border-blue-600'
             }`}
           />
           {errors.name && (
@@ -34,8 +34,8 @@ export default function PatientForm({ patient, errors, onChange }) {
             value={patient.phone}
             onChange={(event) => onChange('phone', event.target.value)}
             placeholder="Contoh: 081234567890"
-            className={`mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-teal-600 ${
-              errors.phone ? 'border-red-300' : 'border-slate-200 focus:border-teal-600'
+            className={`mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-blue-600 ${
+              errors.phone ? 'border-red-300' : 'border-slate-200 focus:border-blue-600'
             }`}
           />
           {errors.phone && (
@@ -54,8 +54,8 @@ export default function PatientForm({ patient, errors, onChange }) {
             value={patient.email}
             onChange={(event) => onChange('email', event.target.value)}
             placeholder="Contoh: budi@example.com"
-            className={`mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-teal-600 ${
-              errors.email ? 'border-red-300' : 'border-slate-200 focus:border-teal-600'
+            className={`mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-blue-600 ${
+              errors.email ? 'border-red-300' : 'border-slate-200 focus:border-blue-600'
             }`}
           />
           {errors.email && (

@@ -14,7 +14,7 @@ export default function ServiceSelector({
   return (
     <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <h2 className="text-base font-semibold text-slate-900">
-        1. Pilih Layanan
+        Pilih Layanan
       </h2>
 
       {loading && <Spinner label="Memuat layanan..." />}
@@ -40,8 +40,8 @@ export default function ServiceSelector({
                 onClick={() => onSelect(service.id)}
                 className={`flex items-start justify-between gap-3 rounded-lg border p-3 text-left transition ${
                   isSelected
-                    ? 'border-teal-600 bg-teal-50 ring-1 ring-teal-600'
-                    : 'border-slate-200 hover:border-teal-300'
+                    ? 'border-blue-600 bg-blue-50 ring-1 ring-blue-600'
+                    : 'border-slate-200 hover:border-blue-300'
                 }`}
               >
                 <div>
@@ -54,7 +54,7 @@ export default function ServiceSelector({
                     </p>
                   )}
                 </div>
-                <span className="shrink-0 text-sm font-semibold text-teal-700">
+                <span className="shrink-0 text-sm font-semibold text-blue-700">
                   {formatRupiah(service.price)}
                 </span>
               </button>
