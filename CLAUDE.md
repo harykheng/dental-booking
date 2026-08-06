@@ -1,4 +1,4 @@
-# Project Instructions — [NAMA PROJECT]
+# Project Instructions — Dental Booking
 
 ## Stack
 <!-- Isi tiap project, contoh: React, Vite, Tailwind CSS, Supabase, Vercel -->
