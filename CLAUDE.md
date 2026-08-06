@@ -1,8 +1,11 @@
 # Project Instructions — Dental Booking
 
 ## Stack
-<!-- Isi tiap project, contoh: React, Vite, Tailwind CSS, Supabase, Vercel -->
-[isi stack teknis project ini di sini — bahasa/framework, database, hosting/deploy]
+- Frontend: React + Vite + Tailwind CSS
+- Backend/DB: Supabase
+- Kategori bisnis: klinik gigi (dental clinic)
+- Target user: pasien yang booking online untuk perawatan gigi
+- Tahap project: mulai dari 0 (belum ada kode aplikasi, repo masih kosong selain setup subagent)
 
 ## How to handle every incoming request
 
@@ -30,10 +33,10 @@ Once confirmed:
 
 ## Project-specific notes
 <!-- WAJIB diisi tiap project baru sebelum mulai kerja serius — ini yang bikin PM/FE/BE gak salah nebak konteks bisnis/teknis project ini -->
-- Struktur folder penting: [isi]
-- Konvensi penamaan (komponen, tabel, endpoint): [isi]
-- Aturan bisnis yang sering salah ditebak AI (harga, jadwal, role user, dll): [isi]
-- Integrasi pihak ketiga yang dipakai (WhatsApp API, payment gateway, dll): [isi]
+- Struktur folder penting: belum ada — project baru mulai dari 0. Struktur folder React+Vite+Tailwind+Supabase akan ditentukan saat fitur pertama dibangun.
+- Konvensi penamaan (komponen, tabel, endpoint): belum ditentukan — akan disepakati di spec fitur pertama.
+- Aturan bisnis yang sering salah ditebak AI (harga, jadwal, role user, dll): belum ada input dari user — jangan diasumsikan, tanyakan lewat Open Questions di spec PM (misalnya: jam operasional klinik, jenis layanan/dokter yang tersedia, apakah ada multi-dokter/multi-kursi, kebijakan cancel/reschedule, apakah perlu pembayaran di muka).
+- Integrasi pihak ketiga yang dipakai (WhatsApp API, payment gateway, dll): belum ada — akan ditentukan sesuai kebutuhan fitur (kemungkinan notifikasi booking via WhatsApp, perlu konfirmasi ke user).
 
 ## Rules
 - Never guess business logic — kalau ambigu, ini masuk Open Questions dari PM, bukan diasumsikan.
