@@ -18,7 +18,7 @@ export default function DateTimeSelector({
   const hasAvailableSlot = slots.some((slot) => slot.is_available)
 
   return (
-    <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+    <section className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <h2 className="text-base font-semibold text-slate-900">
         3. Pilih Tanggal &amp; Jam
       </h2>
