@@ -2,8 +2,8 @@ import { formatDateLong, formatTime } from '../utils/format'
 
 export default function BookingConfirmation({ booking, onBookAnother }) {
   return (
-    <div className="mx-auto max-w-md rounded-xl border border-teal-200 bg-white p-6 text-center shadow-sm">
-      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-teal-100 text-2xl text-teal-600">
+    <div className="mx-auto max-w-md rounded-xl border border-blue-200 bg-white p-6 text-center shadow-sm">
+      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-2xl text-blue-600">
         ✓
       </div>
       <h2 className="mt-3 text-lg font-semibold text-slate-900">
@@ -36,7 +36,7 @@ export default function BookingConfirmation({ booking, onBookAnother }) {
         </div>
         <div className="flex justify-between gap-2">
           <dt className="text-slate-500">Status</dt>
-          <dd className="font-medium capitalize text-teal-700">
+          <dd className="font-medium capitalize text-blue-700">
             {booking.status}
           </dd>
         </div>
@@ -50,7 +50,7 @@ export default function BookingConfirmation({ booking, onBookAnother }) {
       <button
         type="button"
         onClick={onBookAnother}
-        className="mt-5 w-full rounded-lg border border-teal-600 px-4 py-2 text-sm font-medium text-teal-700 hover:bg-teal-50"
+        className="mt-5 w-full rounded-lg border border-blue-600 px-4 py-2 text-sm font-medium text-blue-700 hover:bg-blue-50"
       >
         Buat Booking Lain
       </button>
