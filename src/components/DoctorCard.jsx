@@ -1,25 +1,16 @@
 import { useState } from 'react'
+import {
+  DUMMY_RATING,
+  DUMMY_REVIEW_COUNT,
+  DUMMY_EXPERIENCE_YEARS,
+  DUMMY_AVAILABLE_HOURS,
+  getDummyPhotoUrl,
+} from '../utils/dummyDoctorStats'
 
 // Doctor card for the Home list.
 //
 // Rating, years-of-experience, and available-hours are DUMMY/placeholder
-// values — these fields do not exist in the `doctors` table
-// (id, name, specialization, photo_url, is_active, created_at) and are
-// intentionally the SAME for every doctor so it's obvious this is
-// placeholder copy, not real per-doctor data. Do not randomize or wire
-// these to any table without a BE contract.
-const DUMMY_RATING = '5.0'
-const DUMMY_REVIEW_COUNT = 25
-const DUMMY_EXPERIENCE_YEARS = 25
-const DUMMY_AVAILABLE_HOURS = '09:00 - 17:00'
-
-// Deterministic dummy photo fallback: pravatar.cc generates a stable
-// avatar image per `u` seed, so using the doctor id as the seed keeps the
-// photo consistent across renders/reloads without hardcoding one shared
-// image for every doctor.
-function getDummyPhotoUrl(doctorId) {
-  return `https://i.pravatar.cc/300?u=${encodeURIComponent(doctorId)}`
-}
+// values shared with DoctorProfilePage — see utils/dummyDoctorStats.js.
 
 export default function DoctorCard({ doctor, onClick }) {
   const [imgFailed, setImgFailed] = useState(false)
