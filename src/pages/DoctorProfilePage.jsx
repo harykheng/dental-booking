@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useBookingFlow } from '../context/BookingFlowContext'
 import ServiceSelector from '../components/ServiceSelector'
 import DateTimeSelector from '../components/DateTimeSelector'
+import DoctorProfileHeader from '../components/DoctorProfileHeader'
+import DoctorStatsRow from '../components/DoctorStatsRow'
 import Spinner from '../components/ui/Spinner'
 import ErrorNotice from '../components/ui/ErrorNotice'
 import EmptyNotice from '../components/ui/EmptyNotice'
@@ -66,6 +68,16 @@ export default function DoctorProfilePage() {
     navigate('/book/confirm')
   }
 
+  function handleBack() {
+    // Prefer real browser history back; fall back to Home when this page
+    // was opened directly (fresh load / shared link) with no prior entry.
+    if (window.history.length > 1) {
+      navigate(-1)
+    } else {
+      navigate('/')
+    }
+  }
+
   if (catalogLoading || doctorId !== selectedDoctorId) {
     return (
       <div className="mx-auto max-w-md px-4 py-10">
@@ -98,21 +110,12 @@ export default function DoctorProfilePage() {
   }
 
   return (
-    <div className="mx-auto min-w-0 max-w-md px-4 py-6 pb-40">
-      <section className="flex min-w-0 items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        {doctor.photo_url ? (
-          <img
-            src={doctor.photo_url}
-            alt={doctor.name}
-            className="h-16 w-16 shrink-0 rounded-full object-cover"
-          />
-        ) : (
-          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-blue-100 text-xl font-semibold text-blue-700">
-            {doctor.name?.charAt(0).toUpperCase() ?? '?'}
-          </div>
-        )}
-        <div className="min-w-0">
-          <h1 className="truncate text-lg font-bold text-slate-900">
+    <div className="min-w-0 pb-40">
+      <DoctorProfileHeader doctor={doctor} onBack={handleBack} />
+
+      <div className="mx-auto -mt-6 min-w-0 max-w-md">
+        <section className="min-w-0 rounded-t-3xl bg-white px-4 pt-5 pb-2">
+          <h1 className="truncate text-xl font-bold text-slate-900">
             {doctor.name}
           </h1>
           {doctor.specialization && (
@@ -120,35 +123,37 @@ export default function DoctorProfilePage() {
               {doctor.specialization}
             </p>
           )}
+
+          <DoctorStatsRow />
+        </section>
+
+        <div className="mt-4 grid min-w-0 gap-4 px-4">
+          {!isServiceEligible && (
+            <ServiceSelector
+              services={eligibleServices}
+              loading={false}
+              error={null}
+              onRetry={reloadCatalog}
+              selectedServiceId={selectedServiceId}
+              onSelect={chooseServiceForDoctor}
+            />
+          )}
+
+          {isServiceEligible && (
+            <DateTimeSelector
+              selectedDate={selectedDate}
+              onSelectDate={handleSelectDate}
+              slots={slots}
+              slotsLoading={slotsLoading}
+              slotsError={slotsError}
+              onRetrySlots={reloadSlots}
+              selectedTime={selectedTime}
+              onSelectTime={setSelectedTime}
+            />
+          )}
+
+          {submitError && <ErrorNotice message={submitError} />}
         </div>
-      </section>
-
-      <div className="mt-4 grid min-w-0 gap-4">
-        {!isServiceEligible && (
-          <ServiceSelector
-            services={eligibleServices}
-            loading={false}
-            error={null}
-            onRetry={reloadCatalog}
-            selectedServiceId={selectedServiceId}
-            onSelect={chooseServiceForDoctor}
-          />
-        )}
-
-        {isServiceEligible && (
-          <DateTimeSelector
-            selectedDate={selectedDate}
-            onSelectDate={handleSelectDate}
-            slots={slots}
-            slotsLoading={slotsLoading}
-            slotsError={slotsError}
-            onRetrySlots={reloadSlots}
-            selectedTime={selectedTime}
-            onSelectTime={setSelectedTime}
-          />
-        )}
-
-        {submitError && <ErrorNotice message={submitError} />}
       </div>
 
       <div className="fixed inset-x-0 bottom-14 border-t border-slate-200 bg-white p-4">
