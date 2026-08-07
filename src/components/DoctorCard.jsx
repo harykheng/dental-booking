@@ -1,38 +1,94 @@
-// Doctor card for the Home list. Avatar/fallback (photo_url with initial
-// fallback) mirrors the pattern used across the app's doctor displays.
-export default function DoctorCard({ doctor, onClick }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="flex w-full min-w-0 items-center gap-3 rounded-2xl border border-slate-200 bg-white p-3 text-left shadow-sm transition hover:border-blue-300 hover:shadow-md"
-    >
-      {doctor.photo_url ? (
-        <img
-          src={doctor.photo_url}
-          alt={doctor.name}
-          className="h-14 w-14 shrink-0 rounded-full object-cover"
-        />
-      ) : (
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-blue-100 text-lg font-semibold text-blue-700">
-          {doctor.name?.charAt(0).toUpperCase() ?? '?'}
-        </div>
-      )}
+import { useState } from 'react'
 
-      <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-semibold text-slate-900">
-          {doctor.name}
-        </p>
-        {doctor.specialization && (
-          <p className="truncate text-xs text-slate-500">
-            {doctor.specialization}
+// Doctor card for the Home list.
+//
+// Rating, years-of-experience, and available-hours are DUMMY/placeholder
+// values — these fields do not exist in the `doctors` table
+// (id, name, specialization, photo_url, is_active, created_at) and are
+// intentionally the SAME for every doctor so it's obvious this is
+// placeholder copy, not real per-doctor data. Do not randomize or wire
+// these to any table without a BE contract.
+const DUMMY_RATING = '5.0'
+const DUMMY_REVIEW_COUNT = 25
+const DUMMY_EXPERIENCE_YEARS = 25
+const DUMMY_AVAILABLE_HOURS = '09:00 - 17:00'
+
+// Deterministic dummy photo fallback: pravatar.cc generates a stable
+// avatar image per `u` seed, so using the doctor id as the seed keeps the
+// photo consistent across renders/reloads without hardcoding one shared
+// image for every doctor.
+function getDummyPhotoUrl(doctorId) {
+  return `https://i.pravatar.cc/300?u=${encodeURIComponent(doctorId)}`
+}
+
+export default function DoctorCard({ doctor, onClick }) {
+  const [imgFailed, setImgFailed] = useState(false)
+  const photoSrc = doctor.photo_url || getDummyPhotoUrl(doctor.id)
+  const showPhoto = !imgFailed
+
+  return (
+    <div className="flex min-w-0 items-stretch gap-3 overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-sm transition hover:border-blue-300 hover:shadow-md">
+      <div className="flex min-w-0 flex-1 flex-col justify-between">
+        <div className="min-w-0">
+          <p className="truncate text-sm font-bold text-slate-900">
+            {doctor.name}
           </p>
-        )}
+          {doctor.specialization && (
+            <p className="truncate text-xs text-slate-500">
+              {doctor.specialization}
+            </p>
+          )}
+
+          <div className="mt-2 grid gap-1 text-xs text-slate-600">
+            <div className="flex min-w-0 items-center gap-1.5">
+              <span className="shrink-0 text-amber-400" aria-hidden="true">
+                &#9733;
+              </span>
+              <span className="truncate">
+                {DUMMY_RATING} ({DUMMY_REVIEW_COUNT} ulasan)
+              </span>
+            </div>
+            <div className="flex min-w-0 items-center gap-1.5">
+              <span className="shrink-0 text-blue-500" aria-hidden="true">
+                &#127891;
+              </span>
+              <span className="truncate">
+                {DUMMY_EXPERIENCE_YEARS} tahun pengalaman
+              </span>
+            </div>
+            <div className="flex min-w-0 items-center gap-1.5">
+              <span className="shrink-0 text-blue-500" aria-hidden="true">
+                &#128337;
+              </span>
+              <span className="truncate">{DUMMY_AVAILABLE_HOURS}</span>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={onClick}
+          className="mt-3 w-full rounded-full bg-blue-600 py-2 text-xs font-semibold text-white transition hover:bg-blue-700"
+        >
+          Booking
+        </button>
       </div>
 
-      <span className="shrink-0 text-blue-400" aria-hidden="true">
-        &#8250;
-      </span>
-    </button>
+      <div className="w-24 shrink-0 sm:w-28">
+        {showPhoto ? (
+          <img
+            src={photoSrc}
+            alt={`Foto dokter ${doctor.name}`}
+            loading="lazy"
+            onError={() => setImgFailed(true)}
+            className="h-full w-full rounded-2xl object-cover"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center rounded-2xl bg-blue-100 text-2xl font-semibold text-blue-700">
+            {doctor.name?.charAt(0).toUpperCase() ?? '?'}
+          </div>
+        )}
+      </div>
+    </div>
   )
 }
